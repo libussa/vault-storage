@@ -11,7 +11,6 @@ public class KeyObjectBuilder {
     Path            path;
     Logical         vault;
     String          vaultPrefix;
-    String          vaultSecretBackend;
 
     static KeyObjectBuilder builder() {
         return new KeyObjectBuilder();
@@ -32,14 +31,8 @@ public class KeyObjectBuilder {
         return this;
     }
 
-    KeyObjectBuilder vaultSecretBackend(String vaultSecretBackend){
-        this.vaultSecretBackend = vaultSecretBackend;
-        return this;
-    }
-
-
     private String getVaultPath(String rawPath) {
-        return String.format("%s/%s/%s", vaultSecretBackend, vaultPrefix, rawPath);
+        return String.format("rundeck/%s/%s", vaultPrefix, rawPath);
     }
 
     KeyObject build(){
